@@ -669,6 +669,10 @@ check() {
 
 echo -e "$LOGO\n"
 
+mkdir -p logs
+mkdir -p runnings
+mkdir -p files/databases
+
 if test -z "$1"; then
   echo -e "$HELP"
   exit 1
