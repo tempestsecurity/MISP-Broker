@@ -401,7 +401,6 @@ Para visualizar todas as opções navegue até dentro do diretório do MISP Brok
 ```
 A saída será esta:
 ```  
-
  __  __  _____   _____  _____    ____               _
 |  \/  ||_   _| / ____||  __ \  |  _ \             | |
 | \  / |  | |  | (___  | |__) | | |_) | _ __  ___  | | __ ___  _ __

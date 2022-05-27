@@ -399,7 +399,6 @@ To view all options navigate to the MISP Broker directory and run:
 ```
 The output will be this:
 ```
-
  __  __  _____   _____  _____    ____               _
 |  \/  ||_   _| / ____||  __ \  |  _ \             | |
 | \  / |  | |  | (___  | |__) | | |_) | _ __  ___  | | __ ___  _ __
