@@ -1,0 +1,70 @@
+# type ttl element_type
+# 
+# Set the TTL using a number to represent days.
+# 30 equal 30 days of time to live.
+# You can change the default value in variable DEFAULT_TTL in settings.cfg.
+# Use 0 to define the type as all time. You can change the initial date in variable START_DATE in settings.cfg.
+# 
+# element_type is one of this: ALN, NUM, IP, ALNIC.
+# 
+# Example:
+# md5 0 ALN
+# filename 0 ALNIC
+# ip-dst 30 IP
+# 
+# To ignore a type just insert a # in the start of the line, example: #domain 0 ALNIC
+# 
+# List of some available IOC types:
+ip-src 30 IP
+ip-dst 90 IP
+ip-dst|port 90 ALN
+email-src 90 ALNIC
+email-src-display-name 90 ALNIC
+email-subject 90 ALNIC
+domain 182 ALNIC
+domain|ip 182 ALNIC
+hostname 182 ALNIC
+uri 365 ALNIC
+url 365 ALNIC
+filename 0 ALNIC
+filename|md5 0 ALN
+filename|sha1 0 ALN
+filename|sha256 0 ALN
+imphash 0 ALN
+md5 0 ALN
+sha1 0 ALN
+sha256 0 ALN
+sha3-384 0 ALN
+sha512 0 ALN
+ssdeep 0 ALN
+user-agent 0 ALNIC
+vulnerability 0 ALNIC
+# AS
+# attachment
+# btc
+# comment
+# datetime
+# email-attachment
+# email-dst
+# float
+# link
+# malware-sample
+# mime-type
+# mutex
+# named pipe
+# other
+# pattern-in-file
+# pattern-in-traffic
+# pdb
+# port
+# regkey
+# regkey|value
+# sigma
+# size-in-bytes
+# snort
+# telfhash
+# threat-actor
+# tlsh
+# whois-registrant-email
+# x509-fingerprint-sha1
+# yara
