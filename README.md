@@ -309,7 +309,7 @@ Run the command below to analyze the logs, for example lhebes:
 ```
 Wait for the Broker to finish creating the KVs in Splunk, you will see the last two lines like this:
   
-```shell
+```
  __  __  _____   _____  _____    ____               _
 |  \/  ||_   _| / ____||  __ \  |  _ \             | |
 | \  / |  | |  | (___  | |__) | | |_) | _ __  ___  | | __ ___  _ __
