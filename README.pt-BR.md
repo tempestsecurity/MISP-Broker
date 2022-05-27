@@ -94,7 +94,8 @@ crontab -e
 ```  
 - Escolher o editor.  
 - Inserir uma linha em branco no final do arquivo.  
-- Salvar e fechar.  
+- Salvar e fechar.
+\
 &nbsp;
 #### 3. Descompactar e renomear a pasta de MISP-Broker-vX para MISP-Broker:  
 ```shell  
@@ -311,7 +312,7 @@ Execute o comando abaixo para ficar analisando os logs, exemplo lhebes:
 ```  
 Espere o Broker finalizar a criação das KVs no Splunk, você verá as duas últimas linhas desta forma:  
   
-```shell  
+```  
  __  __  _____   _____  _____    ____               _
 |  \/  ||_   _| / ____||  __ \  |  _ \             | |
 | \  / |  | |  | (___  | |__) | | |_) | _ __  ___  | | __ ___  _ __
@@ -348,7 +349,7 @@ Tendo a **certeza** de que o App foi instalado no Splunk, execute o MISP Broker 
 
 A saída deve ser semelhante a esta:
     
-```shell
+```
  __  __  _____   _____  _____    ____               _
 |  \/  ||_   _| / ____||  __ \  |  _ \             | |
 | \  / |  | |  | (___  | |__) | | |_) | _ __  ___  | | __ ___  _ __
@@ -399,7 +400,7 @@ Para visualizar todas as opções navegue até dentro do diretório do MISP Brok
 ./service.sh help
 ```
 A saída será esta:
-```shell  
+```  
 
  __  __  _____   _____  _____    ____               _
 |  \/  ||_   _| / ____||  __ \  |  _ \             | |
