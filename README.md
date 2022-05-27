@@ -265,7 +265,7 @@ chown user. -R /home/user/MISP/CSVs
 #### 4. Return to the previous directory:
   
 ```shell
-CD ..
+cd ..
 ```
 &nbsp;
 #### 5. Set permissions on scripts:
@@ -399,12 +399,12 @@ To view all options navigate to the MISP Broker directory and run:
 The output will be this:
 ```shell
 
- __ __ _____ _____ _____ ____ _
-| \/ ||_ _| / ____|| __ \ | _ \ | |
-| \ / | | | | (___ | |__) | | |_) | _ __ ___ | | __ ___ _ __
-| |\/| | | | \___ \ | ___/ | _ < | '__|/ _ \ | |/ // _ \| '__|
-| | | | _| |_ ____) || | | |_) || | | (_) || <| __/| |
-|_| |_||_____||_____/ |_| |____/ |_| \___/ |_|\_\___| |_|
+ __  __  _____   _____  _____    ____               _
+|  \/  ||_   _| / ____||  __ \  |  _ \             | |
+| \  / |  | |  | (___  | |__) | | |_) | _ __  ___  | | __ ___  _ __
+| |\/| |  | |   \___ \ |  ___/  |  _ < | '__|/ _ \ | |/ // _ \| '__|
+| |  | | _| |_  ____) || |      | |_) || |  | (_) ||   <|  __/| |
+|_|  |_||_____||_____/ |_|      |____/ |_|   \___/ |_|\_\___| |_|
 Security Operations Center - Tempest Security Intelligence
 version: v5.1
 

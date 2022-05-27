@@ -312,7 +312,7 @@ Execute o comando abaixo para ficar analisando os logs, exemplo lhebes:
 Espere o Broker finalizar a criação das KVs no Splunk, você verá as duas últimas linhas desta forma:  
   
 ```shell  
-__  __  _____   _____  _____    ____               _
+ __  __  _____   _____  _____    ____               _
 |  \/  ||_   _| / ____||  __ \  |  _ \             | |
 | \  / |  | |  | (___  | |__) | | |_) | _ __  ___  | | __ ___  _ __
 | |\/| |  | |   \___ \ |  ___/  |  _ < | '__|/ _ \ | |/ // _ \| '__|
