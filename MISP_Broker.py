@@ -32,7 +32,7 @@ if __name__ == "__main__":
         # Defining MISP Broker Settings
 
         if can_use_logging:
-            message = 'details="Reloading Broker settings" value="{}" loglevel={}'.format(BROKER_SETTING_FILE, BROKER_SETTINGS['LOG_LEVEL'])
+            message = 'details="Reloading Broker settings" value="{}"'.format(BROKER_SETTING_FILE)
             print('Loading Broker settings: {}'.format(BROKER_SETTING_FILE))
             logging.info(message)
         else:
