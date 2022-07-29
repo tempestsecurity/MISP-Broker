@@ -10,8 +10,8 @@ TOKEN="$(cat $SETTINGS_FILE | grep -E "TELEGRAM_BOT_TOKEN =.*#" | tr "#" "=" | a
 CHAT_ID="$(cat $SETTINGS_FILE | grep -E "TELEGRAM_CHAT_ID =.*#" | tr "#" "=" | awk -F= '{print $2}' | grep -Eo "[^ ]+")"
 OPTION=$1
 SETUP_PATH="files/setup"
-ENV_PATH=$(pwd)
-ENV_PATH_FOLDER=$(echo $ENV_PATH | awk -F\/ '{print $NF}')
+ENV_PATH="$(pwd)"
+ENV_PATH_FOLDER=$(echo "$ENV_PATH" | awk -F\/ '{print $NF}')
 DATE=$(date +"%Y-%m-%d_%H-%M-%S")
 AGENT_FOLDER=$(pwd | awk -F\/ '{print $NF}')
 CONFIG_FILE=$(echo $2 | awk -F. '{print $1}')
