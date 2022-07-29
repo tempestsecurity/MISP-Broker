@@ -60,11 +60,11 @@ O MISP Broker também envia alertas pelo Telegram caso esteja tendo problemas de
 ------------  
 &nbsp;
 ### REQUISITOS PARA O MISP BROKER
+* Token de API do MISP com permissões *read only* e *Sighting Creator*;
 * Debian 9/Ubuntu 20.04 ou superior;
 * python3.5 ou superior;
 * Conexão com a internet para para instalação dos pacotes dependentes;
-* Pacotes dependentes no sistema: curl python3 python3-venv unzip tar;
-* Token de API do MISP com permissão *read only*; e
+* Pacotes dependentes no sistema: curl python3 python3-venv unzip tar; e
 * Tabela **cron** iniciada no usuário de execução do MISP Broker.
 \
 &nbsp;
