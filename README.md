@@ -98,7 +98,7 @@ crontab -e
 &nbsp;
 #### 3. Unzip and rename the folder from MISP-Broker-vX to MISP-Broker:
 ```shell
-BROKER_VERSION=$(ls -l MISP-Broker_v*.tar.gz 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/. $//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)
+BROKER_VERSION=$(ls -l MISP-Broker_v*.tar.gz 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)
 
 tar -xzvf MISP-Broker_v${BROKER_VERSION}.tar.gz
 mv MISP-Broker_v${BROKER_VERSION} MISP-Broker
@@ -215,7 +215,7 @@ Copy the template file (default.cfg) to, example, lhebes:
 cp -v default.cfg lhebes.cfg
 ```
 &nbsp;
-#### 3. Edit, fill in cfg file settings parameters, save and close, example:
+#### 5. Edit, fill in cfg file settings parameters, save and close, example:
   
 ```shell
 nano lhebes.cfg
@@ -263,19 +263,19 @@ chown user. -R /home/user/MISP/CSVs
 ```
 
 &nbsp;
-#### 4. Return to the previous directory:
+#### 6. Return to the previous directory:
   
 ```shell
 cd ..
 ```
 &nbsp;
-#### 5. Set permissions on scripts:
+#### 7. Set permissions on scripts:
 ```shell
 chmod u+x service.sh
 chmod u+x misp-broker-updater.sh
 ```
 &nbsp;
-#### 6. Configure proxy (if necessary) and Telegram in settings.cfg file, example:
+#### 8. Configure proxy (if necessary) and Telegram in settings.cfg file, example:
 ```shell
 nano settings.cfg
 ```
@@ -287,18 +287,18 @@ TELEGRAM_BOT_TOKEN = 780193837:AAEqlAKfRYwwkWJG1u3OWTef28AIPWU9zdo # Telegram bo
 TELEGRAM_CHAT_ID = -1001667174374 # Telegram chat id that will receive the alerts
 ```
 &nbsp;
-#### 7. Install the virtual environment:
+#### 9. Install the virtual environment:
 ```shell
 ./service.sh install_venv
 ```
 \
 &nbsp;
-#### 8. Run MISP Broker as a regular user using the following command, passing a cfg file as a parameter, example lhebes:
+#### 10. Run MISP Broker as a regular user using the following command, passing a cfg file as a parameter, example lhebes:
 ```shell
 ./service.sh start lhebes
 ```
 \
-**<span style="color: red;">If the SIEM is QRADAR or is using CSV, skip to the next step (9), if the SIEM is Splunk continue with the following procedures.</span>**
+**<span style="color: red;">If the SIEM is QRADAR or is using CSV, skip to the next step (11), if the SIEM is Splunk continue with the following procedures.</span>**
 \
 \
  MISP Broker will start, create the KVs in Splunk and an App in the format **a1_splunk_misp_v1.1.4.tar.gz** in the directory and then finish generating a log with the App installation procedure in Splunk.
@@ -340,7 +340,7 @@ Having the **sure** that the App was installed on Splunk, run MISP Broker again 
 ./service.sh start lhebes
 ```
 &nbsp;
-#### 9. Check if the MISP Broker is running with the command, example lhebes:
+#### 11. Check if the MISP Broker is running with the command, example lhebes:
 ```shell
 ./service.sh status
 ```
@@ -367,7 +367,7 @@ Total running:
 1682727 ?        -    0:23 /home/user/MISP-Broker/files/setup/venv/bin/python3 MISP_Broker.py lhebes
 ```
 &nbsp;
-#### 10. Check if the MISP Broker was added to the cron with the command, example lhebes:
+#### 12. Check if the MISP Broker was added to the cron with the command, example lhebes:
 ```shell
 crontab -l | grep MISP-Broker | grep lhebes
 ```
@@ -380,13 +380,13 @@ The output should contain two lines similar to these:
 */10 * * * * cd /home/user/MISP-Broker; bash service.sh check lhebes
 ```
 &nbsp;
-#### 11. Follow the logs to verify that everything is ok:
+#### 13. Follow the logs to verify that everything is ok:
 ```shell
 ./service.sh logs
 ```
 or
 ```shell
-./service.sh logs themes
+./service.sh logs lhebes
 ```
 
 ------------
@@ -434,11 +434,11 @@ Example:
         ./service.sh status
 
 Some options need to give a cfg file, example:
-        ./service.sh start alpha
+        ./service.sh start lhebes
 
 And others is optional, example:
         ./service.sh logs -> Will show all cfg logs in real time
-        ./service.sh alpha logs -> Will show only alpha.cfg log in real time
+        ./service.sh logs lhebes -> Will show only lhebes.cfg log in real time
 
 ```
 \
