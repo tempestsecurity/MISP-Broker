@@ -81,6 +81,21 @@ MISP Broker also sends alerts via Telegram if it is having problems running, so 
 &nbsp;
 ### INSTALLATION
 &nbsp;
+#### ATTENTION
+Do not use directories with spaces, this can interfere with the correct functioning of the tool.
+
+
+Wrong path example:
+```shell
+/opt/new folder/MISP-Broker
+```
+Right path example:
+```shell
+/opt/new-folder/MISP-Broker
+or
+/opt/new_folder/MISP-Broker
+```
+&nbsp;
 #### 1. Install dependencies:
 ```shell
 sudo apt update
