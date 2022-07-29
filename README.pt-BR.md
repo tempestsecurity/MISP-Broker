@@ -533,3 +533,32 @@ Acompanhe os logs para ver se está tudo certo:
 ```shell
  ./service.sh logs lhebes
  ```
+&nbsp;  
+
+------------  
+&nbsp;
+### LIMPAR DADOS DO SIEM/CSV PARA RECOMEÇAR DO ZERO
+&nbsp;  
+Acesse o diretório do **MISP-Broker** e pare o serviço do arquivo cfg que deseja limpar os dados no SIEM ou CSV, exemplo:
+```shell
+ ./service.sh stop lhebes
+ ```
+&nbsp;  
+Remova o banco de dados do arquivo cfg em questão, exemplo:
+```shell
+ rm -v files/database/lhebes.db
+ ```
+&nbsp;  
+Execute os procedimentos em **INSTALAÇÃO** a partir do passo **10**.
+&nbsp;  
+&nbsp;  
+\
+**Dica**: para manter o SIEM/CSV limpo olhe os logs e pare o **MISP-Broker** do arquivo cfg quando finalizar a função create_store_in_siem e iniciar a função mark_as_false_positive, por exemplo:
+```
+timestamp="2022-05-13 18:09:41,005" severity="INFO" func="create_store_in_siem" mode="AGENT" type="vulnerability" details="Creating storage name in QRADAR" value="tsi_misp_vulnerability"
+timestamp="2022-05-13 18:09:43,517" severity="INFO" func="create_store_in_siem" mode="AGENT" type="vulnerability" details="Created reference set in QRADAR" value="tsi_misp_vulnerability - 409 - {"http_response":{"code":409,"message":"The request could not be completed due to a conflict with the current state of the resource"},"code":1004,"description":"The reference set could not be created, the name provided is already in use. Please change the name and try again.","details":{},"message":"The name tsi_misp_vulnerability is already in use"}"
+timestamp="2022-05-13 18:09:43,554" severity="INFO" func="mark_as_false_positive" mode="AGENT" details="Checking ip-src IOCs status" value="1/24"
+timestamp="2022-05-13 18:09:43,858" severity="INFO" func="mark_as_false_positive" mode="AGENT" details="Checking ip-dst IOCs status" value="2/24"
+```
+&nbsp;  
+&nbsp;  
