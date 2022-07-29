@@ -411,34 +411,34 @@ version: v5.1
 
 
 Choose:
-        status -> Show status of all Broker config files processes
-        logs -> Show logs of all Broker config file running process or just one
-        start -> Start one Broker config file running process
-        stop -> Stop one Broker config file running process
-        restart -> Restart one Broker config file service
-        startall -> Start all Broker config files listed in cron
-        stopall -> Stop all Broker config files with running process
-        restartall -> Restart all Broker config files listed in cron
-        kill -> Force kill all Broker config files running process or just one config file running process
-        enable -> Add Broker config file service from cron
-        disable -> Remove Broker config file service from cron
-        check -> Verify if Broker config file service is running with activity
-        backup_make -> Make a backup of important Broker files
-        backup_restore -> Restore existing backups of important Broker files
-        install_venv -> Install python 3 virtual environment for Broker
-        reinstall_venv -> Reinstall python 3 virtual environment for Broker
-        lookthis -> Wait! What is it?! O_o
-        help -> Show this help message
+        status               ->         Show status of all Broker config files processes
+        logs                 ->         Show logs of all Broker config file running process or justo one
+        start                ->         Start one Broker config file running process
+        stop                 ->         Stop one Broker config file running process
+        restart              ->         Restart one Broker config file service
+        startall             ->         Start all Broker config files listed in cron
+        stopall              ->         Stop all Broker config files with running process
+        restartall           ->         Restart all Broker config files listed in cron
+        kill                 ->         Force kill all Broker config files running process or just one config file running process
+        enable               ->         Add Broker config file service from cron
+        disable              ->         Remove Broker config file service from cron
+        check                ->         Verify if Broker config file service is running with activity
+        backup_make          ->         Make a backup of important Broker files
+        backup_restore       ->         Restore existing backups of important Broker files
+        install_venv         ->         Install python 3 virtual environment for Broker
+        reinstall_venv       ->         Reinstall python 3 virtual environment for Broker
+        lookthis             ->         Wait! What is it?! O_o
+        help                 ->         Show this help message
 
 Example:
         ./service.sh status
 
 Some options need to give a cfg file, example:
-        ./service.sh start lhebes
+        ./service.sh start alpha
 
 And others is optional, example:
-        ./service.sh logs -> Will show all cfg logs in real time
-        ./service.sh logs lhebes -> Will show only lhebes.cfg log in real time
+        ./service.sh logs               ->      Will show all cfg logs in real time
+        ./service.sh logs alpha         ->      Will show only alpha.cfg log in real time
 
 ```
 \
