@@ -102,8 +102,17 @@ then
 
   echo -e "\n\nStarting update...\n"
 
-  tar xzvf MISP-Broker_v${VERSION}.tar.gz -C MISP-Broker/ --strip-components=1
-  rm -rv MISP-Broker_v${VERSION}.tar.gz
+  if [ "$(echo $VERSION)" == "main" ]
+  then
+    echo -en "From main branch "
+    unzip MISP-Broker-main.zip
+    cp -rv MISP-Broker-main/*  MISP-Broker/
+    rm -rv MISP-Broker-main.zip MISP-Broker-main
+  else
+    echo -e "From release branch Archive:  MISP-Broker_v${VERSION}.tar.gz"
+    tar xzvf MISP-Broker_v${VERSION}.tar.gz -C MISP-Broker/ --strip-components=1
+    rm -rv MISP-Broker_v${VERSION}.tar.gz
+  fi
 
   echo -e "\n\nUpdate finished.\n\n\nDefining permissions...\n"
 
