@@ -551,7 +551,7 @@ Perform the procedures in **INSTALLATION** from step **10**.
 &nbsp;  
 &nbsp;  
 \
-**Tip**: to keep SIEM/CSV clean look the logs and stop the **MISP-Broker** of the cfg file when it finalize the create_store_in_siem funcion and start the mark_as_false_positive function, for example:
+**Tip**: if you wanna keep SIEM/CSV clean look the logs and stop the **MISP-Broker** of the cfg file when it finalize the create_store_in_siem funcion and start the mark_as_false_positive function, for example:
 ```
 timestamp="2022-05-13 18:09:41,005" severity="INFO" func="create_store_in_siem" mode="AGENT" type="vulnerability" details="Creating storage name in QRADAR" value="tsi_misp_vulnerability"
 timestamp="2022-05-13 18:09:43,517" severity="INFO" func="create_store_in_siem" mode="AGENT" type="vulnerability" details="Created reference set in QRADAR" value="tsi_misp_vulnerability - 409 - {"http_response":{"code":409,"message":"The request could not be completed due to a conflict with the current state of the resource"},"code":1004,"description":"The reference set could not be created, the name provided is already in use. Please change the name and try again.","details":{},"message":"The name tsi_misp_vulnerability is already in use"}"
