@@ -216,7 +216,7 @@ Copiar o arquivo modelo (default.cfg) para, exemplo, lhebes:
 cp -v default.cfg lhebes.cfg
 ```  
 &nbsp;
-#### 3. Editar, preencher os parâmetros de configurações do arquivo cfg, salvar e fechar, exemplo:  
+#### 5. Editar, preencher os parâmetros de configurações do arquivo cfg, salvar e fechar, exemplo:  
   
 ```shell  
 nano lhebes.cfg
@@ -265,19 +265,19 @@ chown user. -R /home/user/MISP/CSVs
 ```
 
 &nbsp;
-#### 4. Retornar ao diretório anterior:  
+#### 6. Retornar ao diretório anterior:  
   
 ```shell  
 cd ..
 ```  
 &nbsp;
-#### 5. Definir permissões nos scripts:  
+#### 7. Definir permissões nos scripts:  
 ```shell  
 chmod u+x service.sh
 chmod u+x misp-broker-updater.sh
 ```  
 &nbsp;
-#### 6. Configurar o proxy (se necessário) e o Telegram no arquivo settings.cfg, exemplo:  
+#### 8. Configurar o proxy (se necessário) e o Telegram no arquivo settings.cfg, exemplo:  
 ```shell  
 nano settings.cfg
 ```  
@@ -289,18 +289,18 @@ TELEGRAM_BOT_TOKEN = 780193837:AAEqlAKfRYwwkWJG1u3OWTef28AIPWU9zdo  # Telegram b
 TELEGRAM_CHAT_ID = -1001667174374  # Telegram chat id that will receive the alerts  
 ```
 &nbsp;
-#### 7. Instale o virtual environment:  
+#### 9. Instale o virtual environment:  
 ```shell  
 ./service.sh install_venv
 ```
 \
 &nbsp;
-#### 8. Executar o MISP Broker como usuário comum utilizando o comando a seguir passando um arquivo cfg como parâmetro, exemplo lhebes:  
+#### 10. Executar o MISP Broker como usuário comum utilizando o comando a seguir passando um arquivo cfg como parâmetro, exemplo lhebes:  
 ```shell  
 ./service.sh start lhebes
 ```
 \
-**<span style="color: red;">Se o SIEM for QRADAR ou está utilizando CSV, pule para o próximo passo (9), caso o SIEM seja Splunk continue com os procedimentos a seguir.</span>**
+**<span style="color: red;">Se o SIEM for QRADAR ou está utilizando CSV, pule para o próximo passo (11), caso o SIEM seja Splunk continue com os procedimentos a seguir.</span>**
 \
 \
  O MISP Broker vai iniciar, criar as KVs no Splunk e um App no formato **a1_splunk_misp_v1.1.4.tar.gz** no diretório e então encerrar gerando um log com o procedimento de instalação do App no Splunk.
@@ -342,7 +342,7 @@ Tendo a **certeza** de que o App foi instalado no Splunk, execute o MISP Broker 
 ./service.sh start lhebes
 ```  
 &nbsp;
-#### 9. Verifique se o MISP Broker está rodando com o comando, exemplo lhebes:
+#### 11. Verifique se o MISP Broker está rodando com o comando, exemplo lhebes:
 ```shell
 ./service.sh status
 ```
@@ -369,7 +369,7 @@ Total running:
 1682727 ?        -    0:23 /home/user/MISP-Broker/files/setup/venv/bin/python3 MISP_Broker.py lhebes
 ```
 &nbsp;
-#### 10. Verificar se o MISP Broker foi adicionado na cron com o comando, exemplo lhebes:
+#### 12. Verificar se o MISP Broker foi adicionado na cron com o comando, exemplo lhebes:
 ```shell
 crontab -l | grep MISP-Broker | grep lhebes
 ```
@@ -382,7 +382,7 @@ A saída deve contar duas linhas similares a estas:
 */10 * * * * cd /home/user/MISP-Broker; bash service.sh check lhebes
 ```
 &nbsp;
-#### 11. Acompanhe os logs para verificar se está tudo certo:
+#### 13. Acompanhe os logs para verificar se está tudo certo:
 ```shell
 ./service.sh logs
 ```
