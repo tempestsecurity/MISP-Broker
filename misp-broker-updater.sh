@@ -15,6 +15,12 @@ fi
 BROKER_PATH="$(pwd)/MISP-Broker"
 
 VERSION=$(ls -l MISP-Broker_v*.tar.gz 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)
+
+if test -z "$VERSION"
+then
+    VERSION=$(ls -l MISP-Broker-main.zip 2> /dev/null | awk -F'-' '{print $NF}' | sed 's/.zip$//g' | sort -u | tail -n 1)
+fi
+
 LOCAL_PATH=$(ls | grep -E "^MISP-Broker$")
 LOGO="
  __  __  _____   _____  _____    ____               _
