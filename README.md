@@ -108,7 +108,7 @@ crontab -e
 ```
 - Choose the editor.
 - Insert a blank line at the end of the file.
-- save and close.
+- Save and close.
 \
 &nbsp;
 #### 3. Unzip and rename the folder from MISP-Broker-vX or MISP-Broker-main to MISP-Broker:
