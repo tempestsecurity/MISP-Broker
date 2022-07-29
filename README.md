@@ -99,7 +99,7 @@ or
 #### 1. Install dependencies:
 ```shell
 sudo apt update
-sudo apt install curl python3 python3-venv
+sudo apt install curl python3 python3-venv unzip
 ```
 &nbsp;
 #### 2. Run the command below as a regular user to start cron:
