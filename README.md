@@ -59,11 +59,11 @@ MISP Broker also sends alerts via Telegram if it is having problems running, so 
 ------------
 &nbsp;
 ### REQUIREMENTS FOR MISP BROKER
+* MISP API token with *read only* and *Sighting Creator* permissions;
 * Debian 9/Ubuntu 20.04 or higher;
 * python3.5 or higher;
 * Internet connection to install dependent packages;
-* System dependent packages: curl python3 python3-venv unzip tar;
-* MISP API token with *read only* permission; and
+* System dependent packages: curl python3 python3-venv unzip tar; and
 * Table **cron** started on MISP Broker running user.
 \
 &nbsp;
