@@ -62,7 +62,7 @@ MISP Broker also sends alerts via Telegram if it is having problems running, so 
 * Debian 9/Ubuntu 20.04 or higher;
 * python3.5 or higher;
 * Internet connection to install dependent packages;
-* System dependent packages: curl python3 python3-venv;
+* System dependent packages: curl python3 python3-venv unzip tar;
 * MISP API token with *read only* permission; and
 * Table **cron** started on MISP Broker running user.
 \
@@ -99,7 +99,7 @@ or
 #### 1. Install dependencies:
 ```shell
 sudo apt update
-sudo apt install curl python3 python3-venv unzip
+sudo apt install curl python3 python3-venv unzip tar
 ```
 &nbsp;
 #### 2. Run the command below as a regular user to start cron:
