@@ -125,9 +125,9 @@ if __name__ == "__main__":
             )
 
             if LOGGING_SETTINGS['DEBUG'].lower() == 'false':
-                logging.getLogger('root').setLevel(level=logging.INFO)
+                logging.getLogger().setLevel(level=logging.INFO)
             else:
-                logging.getLogger('root').setLevel(level=logging.DEBUG)
+                logging.getLogger().setLevel(level=logging.DEBUG)
 
             can_use_logging = True
 
