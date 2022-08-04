@@ -152,6 +152,7 @@ def agent(all_settings, events_count_by_type):
                 body_by_type['from'] = earliest.strftime(DATE_TIME_FORMAT)
                 body_by_type['to'] = latest.strftime(DATE_TIME_FORMAT)
 
+                timestamp_last_updates = datetime.datetime.now() - datetime.timedelta(hours=all_settings['BROKER_SETTINGS']['UPDATE_LOOKBACK'])
                 body_last_updates['timestamp'] = timestamp_last_updates.strftime(DATE_TIME_FORMAT)
 
                 step_timestamp = '{} earliest="{}" latest="{}" hour_count="{}" total_hours="{}"'.format(step_type, body_by_type['from'],
@@ -175,7 +176,11 @@ def agent(all_settings, events_count_by_type):
                         message = '{} details="Trying to connect to MISP server"'.format(step_timestamp)
                         logging.info(message)
 
+                        message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['MISP_API_URL'])
+                        logging.info(message)
                         response = requests.post(all_settings['MISP_SETTINGS']['MISP_API_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_by_type, verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
+                        message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
+                        logging.info(message)
                         query_json = response.json()
                         try:
                             ttotal = len(query_json['response']['Attribute'])
@@ -192,8 +197,12 @@ def agent(all_settings, events_count_by_type):
 
                         logging.info(message)
 
+                        message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['MISP_API_URL'])
+                        logging.info(message)
                         response = requests.post(all_settings['MISP_SETTINGS']['MISP_API_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_last_updates,
                                                  verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
+                        message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
+                        logging.info(message)
                         query_json = response.json()
                         try:
                             for item in query_json['response']['Attribute']:
@@ -203,8 +212,12 @@ def agent(all_settings, events_count_by_type):
                                       'value="{} {}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['MISP_API_URL'], e)
                             logging.error(details)
 
+                        message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'])
+                        logging.info(message)
                         response = requests.post(all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_last_updates,
                                                  verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
+                        message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
+                        logging.info(message)
                         query_json = response.json()
 
                         value_list = []
@@ -223,15 +236,38 @@ def agent(all_settings, events_count_by_type):
                             message = '{} details="New {} sightings to sync"'.format(step_timestamp, len(value_list))
                             logging.info(message)
 
-                            attributes_sightings_json = {'returnFormat': 'json', 'value': {'OR': value_list}}
-                            logging.debug(attributes_sightings_json)
+                            split_data_list = []
+                            count = 0
+                            max_amount = 10
 
-                            response = requests.post(all_settings['MISP_SETTINGS']['MISP_API_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=attributes_sightings_json,
-                                                     verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
-                            query_json = response.json()
+                            for index in range(0, len(value_list), max_amount):
+                                split_data_list.append(value_list[index: index + max_amount])
 
-                            for item in query_json['response']['Attribute']:
-                                iocs_from_misp.append(item)
+                            for splitter_list in split_data_list:
+
+                                count += 1
+
+                                message = '{} details="Getting sightings values" list="{}/{}"'.format(step_timestamp, count, len(split_data_list))
+                                logging.info(message)
+
+                                if len(splitter_list) > 0:
+                                    attributes_sightings_json = {'returnFormat': 'json', 'value': {'OR': splitter_list}}
+                                    logging.debug(attributes_sightings_json)
+
+                                    try:
+                                        message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['MISP_API_URL'])
+                                        logging.info(message)
+                                        response = requests.post(all_settings['MISP_SETTINGS']['MISP_API_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=attributes_sightings_json,
+                                                                verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'], timeout=120)
+                                        message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
+                                        logging.info(message)
+                                        query_json = response.json()
+
+                                        for item in query_json['response']['Attribute']:
+                                            iocs_from_misp.append(item)
+                                    except Exception as e:
+                                        message = '{} details="Timeout" status="{}"'.format(step_timestamp, e)
+                                        logging.warning(message)
 
                         misp_connection_status = True
                         events_count_by_type[ioc_type_settings] = ttotal
@@ -245,7 +281,6 @@ def agent(all_settings, events_count_by_type):
 
                 earliest = earliest + datetime.timedelta(hours=all_settings['BROKER_SETTINGS']['RANGE_TIME'])
 
-                # For each IOC in JSON append in CSV type file...
                 ioc_count = 0
                 ioc_update = 0
                 max_amount = 2000
@@ -257,8 +292,18 @@ def agent(all_settings, events_count_by_type):
                 for iocs in split_data_list:
 
                     try:
+
+                        timestamp_last_updates = datetime.datetime.now() - datetime.timedelta(hours=all_settings['BROKER_SETTINGS']['UPDATE_LOOKBACK'])
+                        body_last_updates['timestamp'] = timestamp_last_updates.strftime(DATE_TIME_FORMAT)
+
+                        logging.debug('body_last_updates: {}'.format(body_last_updates))
+
+                        message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'])
+                        logging.info(message)
                         response = requests.post(all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_last_updates,
                                                  verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
+                        message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
+                        logging.info(message)
                         query_json = response.json()
 
                         value_list = []
@@ -277,15 +322,39 @@ def agent(all_settings, events_count_by_type):
                             message = '{} details="New {} sightings to sync"'.format(step_timestamp, len(value_list))
                             logging.info(message)
 
-                            attributes_sightings_json = {'returnFormat': 'json', 'value': {'OR': value_list}}
-                            logging.debug(attributes_sightings_json)
+                            split_data_list = []
+                            count = 0
+                            max_amount = 10
 
-                            response = requests.post(all_settings['MISP_SETTINGS']['MISP_API_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=attributes_sightings_json,
-                                                     verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
-                            query_json = response.json()
+                            for index in range(0, len(value_list), max_amount):
+                                split_data_list.append(value_list[index: index + max_amount])
 
-                            for item in query_json['response']['Attribute']:
-                                iocs.append(item)
+                            for splitter_list in split_data_list:
+
+                                count += 1
+
+                                message = '{} details="Getting sightings values" list="{}/{}"'.format(step_timestamp, count, len(split_data_list))
+                                logging.info(message)
+
+                                if len(splitter_list) > 0:
+                                    attributes_sightings_json = {'returnFormat': 'json', 'value': {'OR': splitter_list}}
+                                    logging.debug(attributes_sightings_json)
+
+                                    try:
+                                        message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['MISP_API_URL'])
+                                        logging.info(message)
+                                        response = requests.post(all_settings['MISP_SETTINGS']['MISP_API_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=attributes_sightings_json,
+                                                                verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'], timeout=120)
+                                        message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
+                                        logging.info(message)
+                                        query_json = response.json()
+
+                                        for item in query_json['response']['Attribute']:
+                                            iocs_from_misp.append(item)
+
+                                    except Exception as e:
+                                        message = '{} details="Timeout" status="{}"'.format(step_timestamp, e)
+                                        logging.warning(message)
 
                     except Exception as e:
                         details = '{} details="Cannot connect to MISP server to get sightings" ' \
@@ -312,8 +381,12 @@ def agent(all_settings, events_count_by_type):
                                                                                                                         str(database_updates).zfill(4))
                                     logging.info(message)
 
+                                    message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, '{}{}'.format(all_settings['MISP_SETTINGS']['SIGHTINGS_URL'], event))
+                                    logging.info(message)
                                     response = requests.post('{}{}'.format(all_settings['MISP_SETTINGS']['SIGHTINGS_URL'], event), headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'],
                                                              json=body_sightings, verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
+                                    message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
+                                    logging.info(message)
                                     query_json = response.json()
                                     events_on_misp[event] = query_json
                                     misp_connection_status = True
