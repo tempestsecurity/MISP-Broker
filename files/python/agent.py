@@ -238,7 +238,7 @@ def agent(all_settings, events_count_by_type):
 
                             split_data_list = []
                             count = 0
-                            max_amount = 10
+                            max_amount = 100
 
                             for index in range(0, len(value_list), max_amount):
                                 split_data_list.append(value_list[index: index + max_amount])
@@ -324,7 +324,7 @@ def agent(all_settings, events_count_by_type):
 
                             split_data_list = []
                             count = 0
-                            max_amount = 10
+                            max_amount = 100
 
                             for index in range(0, len(value_list), max_amount):
                                 split_data_list.append(value_list[index: index + max_amount])
