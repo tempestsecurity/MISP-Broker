@@ -225,7 +225,7 @@ def agent(all_settings, events_count_by_type):
 
                         try:
                             for item in query_json['response']:
-                                value_list.append(item['Sighting']['value'])
+                                value_list.append(str(str(item['Sighting']['value']).replace('%', '\%')))
                         except Exception as e:
                             details = '{} details="Cannot get last updated sightings" ' \
                                       'value="{} {} {}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['MISP_API_URL'], e, query_json)
@@ -311,7 +311,7 @@ def agent(all_settings, events_count_by_type):
 
                         try:
                             for item in query_json['response']:
-                                value_list.append(item['Sighting']['value'])
+                                value_list.append(str(str(item['Sighting']['value']).replace('%', '\%')))
                         except Exception as e:
                             details = '{} details="Cannot get last updated sightings" ' \
                                       'value="{} {} {}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['MISP_API_URL'], e, query_json)
@@ -350,7 +350,7 @@ def agent(all_settings, events_count_by_type):
                                         query_json = response.json()
 
                                         for item in query_json['response']['Attribute']:
-                                            iocs_from_misp.append(item)
+                                            iocs.append(item)
 
                                     except Exception as e:
                                         message = '{} details="Timeout" status="{}"'.format(step_timestamp, e)
