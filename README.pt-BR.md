@@ -1,5 +1,8 @@
-
 # MISP Broker  
+&nbsp;
+
+Use **README.md** for English Documentation.
+
 &nbsp;
 
 O **MISP Broker** é uma ferramenta desenvolvida pelo time de plataforma do Security Operations Center (SOC) da [**Tempest Security Intelligence**](https://www.tempest.com.br/). Seu propósito é realizar uma integração gerenciável e com confiabilidade dos Indicadores de Comprometimento (IoC) do MISP em Splunk, QRadar e outras plataformas que possam utilizar arquivos de tabelas do tipo CSV como *block list*.
@@ -86,6 +89,7 @@ O MISP Broker também envia alertas pelo Telegram caso esteja tendo problemas de
 Não use diretórios com espaços, isso pode interferir no correto funcionamento da ferramenta.
 
 
+&nbsp;
 Exemplo de diretório errado:
 ```shell
 /opt/new folder/MISP-Broker
@@ -96,6 +100,10 @@ Exemplo de diretório certo:
 ou
 /opt/new_folder/MISP-Broker
 ```
+&nbsp;
+
+#### TODOS OS VALORES USADO NESTA DOCUMENTAÇÃO SÃO DE EXEMPLO.
+
 &nbsp;
 #### 1. Instalar dependências:  
 ```shell  
@@ -250,7 +258,7 @@ SIEM = SPLUNK  # QRADAR or SPLUNK or CSV
 SIEM_PROTOCOL = https  # http or https (ignore if use CSV)
 SIEM_ADDRESS = 192.168.153.41  # URL or IP or Full PATH if use CSV
 SIEM_PORT = 8089  # Example 443, 8089, etc (ignore if use CSV)
-SIEM_API_TOKEN = 13a2f79e-d7fe-a142-4d9c-313c41a163b7  # API token with permissions to manager KVs (Splunk) or Reference Sets (QRadar) (ignore if use CSV)
+SIEM_API_TOKEN = XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  # API token with permissions to manager KVs (Splunk) or Reference Sets (QRadar) (ignore if use CSV)
 SIEM_API_VERSION = 13.1  # 13.1 or above. Only if use the QRadar (ignore if use CSV)
 SIEM_APP_VERSION = 1.1.4  # Always above the previous version installed in the Splunk. Only if use the Splunk (ignore if use CSV)
 BATCH_LIST_SIZE =   # Max recommended: 1000 to Splunk and 10000 to QRadar (leave blank to use these default values) (ignore if use CSV)
@@ -259,7 +267,7 @@ BATCH_LIST_SIZE =   # Max recommended: 1000 to Splunk and 10000 to QRadar (leave
 [MISP_SETTINGS]
 MISP_ADDRESS = 192.168.153.11  # URL or IP
 MISP_PROTOCOL = https  # http or https
-MISP_API_TOKEN = 75fRj0e77uNUqAQmpKiLpLVw5ZXQYIwsxnJujl3w  # API token with USER role
+MISP_API_TOKEN = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  # API token with USER role
 ```
 Exemplo para CSV:
 ```shell  
@@ -277,7 +285,7 @@ BATCH_LIST_SIZE =   # Max recommended: 1000 to Splunk and 10000 to QRadar (leave
 [MISP_SETTINGS]
 MISP_ADDRESS = 192.168.153.11  # URL or IP
 MISP_PROTOCOL = https  # http or https
-MISP_API_TOKEN = 75fRj0e77uNUqAQmpKiLpLVw5ZXQYIwsxnJujl3w  # API token with USER role
+MISP_API_TOKEN = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  # API token with USER role
 ```
 Se usar CSV, você precisa executar estes comandos para preparar o diretório informado em SIEM_ADDRESS:
 
@@ -307,8 +315,8 @@ Edite os campos:
 ```shell  
 [SYSTEM_SETTINGS]
 PROXY = 10.10.1.254:3128  # Proxy if is necessary to use telegram and install virtual environment packages  
-TELEGRAM_BOT_TOKEN = 780193837:AAEqlAKfRYwwkWJG1u3OWTef28AIPWU9zdo  # Telegram bot token to send alerts  
-TELEGRAM_CHAT_ID = -1001667174374  # Telegram chat id that will receive the alerts  
+TELEGRAM_BOT_TOKEN = 000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  # Telegram bot token to send alerts  
+TELEGRAM_CHAT_ID = -1009999999999  # Telegram chat id that will receive the alerts  
 ```
 &nbsp;
 #### 9. Instale o virtual environment:  
@@ -325,7 +333,7 @@ TELEGRAM_CHAT_ID = -1001667174374  # Telegram chat id that will receive the aler
 **<span style="color: red;">Se o SIEM for QRADAR ou está utilizando CSV, pule para o próximo passo (11), caso o SIEM seja Splunk continue com os procedimentos a seguir.</span>**
 \
 \
- O MISP Broker vai iniciar, criar as KVs no Splunk e um App no formato **a1_splunk_misp_v1.1.4.tar.gz** no diretório e então encerrar gerando um log com o procedimento de instalação do App no Splunk.
+ O MISP Broker vai iniciar, criar as KVs no Splunk e um App no formato **a1_splunk_misp_1.1.4.tar.gz** no diretório e então encerrar gerando um log com o procedimento de instalação do App no Splunk.
 \
 \
 Execute o comando abaixo para ficar analisando os logs, exemplo lhebes:  
