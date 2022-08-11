@@ -119,7 +119,7 @@ then
   cd -
   chmod u+x *.sh files/setup/*.sh
   cd -
-  chown $(whoami).$(whoami) -R MISP-Broker
+  chown $(whoami) -R MISP-Broker
 
 
   echo -e "\n\nLooking for changes in settings.cfg...\n"
