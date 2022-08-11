@@ -82,6 +82,7 @@ def agent(all_settings, events_count_by_type):
 
             # Body used to get last updates in MISP
             body_last_updates = all_settings['MISP_SETTINGS']['MISP_BODY_LAST_UPDATES']
+            body_last_sightings = all_settings['MISP_SETTINGS']['MISP_BODY_SIGHTINGS']
 
             # Get this execution date and time
             now = datetime.datetime.now()
@@ -154,6 +155,7 @@ def agent(all_settings, events_count_by_type):
 
                 timestamp_last_updates = datetime.datetime.now() - datetime.timedelta(hours=all_settings['BROKER_SETTINGS']['UPDATE_LOOKBACK'])
                 body_last_updates['timestamp'] = timestamp_last_updates.strftime(DATE_TIME_FORMAT)
+                body_last_sightings['last'] = str(int(timestamp_last_updates.timestamp()))
 
                 step_timestamp = '{} earliest="{}" latest="{}" hour_count="{}" total_hours="{}"'.format(step_type, body_by_type['from'],
                                                                                                         body_by_type['to'], hour_count, total_hours)
@@ -161,6 +163,7 @@ def agent(all_settings, events_count_by_type):
                 logging.debug('body_by_type: {}'.format(body_by_type))
                 logging.debug('body_sightings: {}'.format(body_sightings))
                 logging.debug('body_last_updates: {}'.format(body_last_updates))
+                logging.debug('body_last_sightings: {}'.format(body_last_sightings))
 
                 misp_connection_status = False
                 while not misp_connection_status:
@@ -214,7 +217,7 @@ def agent(all_settings, events_count_by_type):
 
                         message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'])
                         logging.info(message)
-                        response = requests.post(all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_last_updates,
+                        response = requests.post(all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_last_sightings,
                                                  verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
                         message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
                         logging.info(message)
@@ -295,12 +298,13 @@ def agent(all_settings, events_count_by_type):
 
                         timestamp_last_updates = datetime.datetime.now() - datetime.timedelta(hours=all_settings['BROKER_SETTINGS']['UPDATE_LOOKBACK'])
                         body_last_updates['timestamp'] = timestamp_last_updates.strftime(DATE_TIME_FORMAT)
+                        body_last_sightings['last'] = str(int(timestamp_last_updates.timestamp()))
 
                         logging.debug('body_last_updates: {}'.format(body_last_updates))
 
                         message = '{} details="Starting requests" URL="{}"'.format(step_timestamp, all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'])
                         logging.info(message)
-                        response = requests.post(all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_last_updates,
+                        response = requests.post(all_settings['MISP_SETTINGS']['SIGHTINGS_RECENT_URL'], headers=all_settings['MISP_SETTINGS']['MISP_HEADERS'], json=body_last_sightings,
                                                  verify=all_settings['MISP_SETTINGS']['MISP_VERIFY_SSL'])
                         message = '{} details="Requests done" status_code="{}"'.format(step_timestamp, response.status_code)
                         logging.info(message)
