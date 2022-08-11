@@ -249,7 +249,7 @@ SIEM = SPLUNK  # QRADAR or SPLUNK or CSV
 SIEM_PROTOCOL = https  # http or https (ignore if use CSV)
 SIEM_ADDRESS = 192.168.153.41  # URL or IP or Full PATH if use CSV
 SIEM_PORT = 8089  # Example 443, 8089, etc (ignore if use CSV)
-SIEM_API_TOKEN = 13a2f79e-d7fe-a142-4d9c-313c41a163b7  # API token with permissions to manager KVs (Splunk) or Reference Sets (QRadar) (ignore if use CSV)
+SIEM_API_TOKEN = XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  # API token with permissions to manager KVs (Splunk) or Reference Sets (QRadar) (ignore if use CSV)
 SIEM_API_VERSION = 13.1  # 13.1 or above. Only if use the QRadar (ignore if use CSV)
 SIEM_APP_VERSION = 1.1.4  # Always above the previous version installed in the Splunk. Only if use the Splunk (ignore if use CSV)
 BATCH_LIST_SIZE =   # Max recommended: 1000 to Splunk and 10000 to QRadar (leave blank to use these default values) (ignore if use CSV)
@@ -258,7 +258,7 @@ BATCH_LIST_SIZE =   # Max recommended: 1000 to Splunk and 10000 to QRadar (leave
 [MISP_SETTINGS]
 MISP_ADDRESS = 192.168.153.11  # URL or IP
 MISP_PROTOCOL = https  # http or https
-MISP_API_TOKEN = 75fRj0e77uNUqAQmpKiLpLVw5ZXQYIwsxnJujl3w  # API token with USER role
+MISP_API_TOKEN = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  # API token with USER role
 ```
 Example for CSV:
 ```shell  
@@ -276,7 +276,7 @@ BATCH_LIST_SIZE =   # Max recommended: 1000 to Splunk and 10000 to QRadar (leave
 [MISP_SETTINGS]
 MISP_ADDRESS = 192.168.153.11  # URL or IP
 MISP_PROTOCOL = https  # http or https
-MISP_API_TOKEN = 75fRj0e77uNUqAQmpKiLpLVw5ZXQYIwsxnJujl3w  # API token with USER role
+MISP_API_TOKEN = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  # API token with USER role
 ```
 If using CSV, you need to run these commands to prepare the directory specified in SIEM_ADDRESS:
 ```shell  
@@ -305,8 +305,8 @@ Edit the fields:
 ```shell
 [SYSTEM_SETTINGS]
 PROXY = 10.10.1.254:3128 # Proxy if it is necessary to use telegram and install virtual environment packages
-TELEGRAM_BOT_TOKEN = 780193837:AAEqlAKfRYwwkWJG1u3OWTef28AIPWU9zdo # Telegram bot token to send alerts
-TELEGRAM_CHAT_ID = -1001667174374 # Telegram chat id that will receive the alerts
+TELEGRAM_BOT_TOKEN = 000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # Telegram bot token to send alerts
+TELEGRAM_CHAT_ID = -1001234567890 # Telegram chat id that will receive the alerts
 ```
 &nbsp;
 #### 9. Install the virtual environment:
@@ -354,7 +354,7 @@ timestamp="2022-05-13 17:42:31,056" severity="INFO" func="execution_stop_registe
 **Note**: if no changes are made to the **type_list.txt** file, the App already compiled included in the package can be used.
 
 \
-Install the App **app a1_splunk_misp_v1.1.4.tar.gz** in Splunk.
+Install the App **app a1_splunk_misp_1.1.4.tar.gz** in Splunk.
 \
 Having the **sure** that the App was installed on Splunk, run MISP Broker again with the command below:
   
