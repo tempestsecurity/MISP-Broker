@@ -87,8 +87,7 @@ MISP Broker also sends alerts via Telegram if it is having problems running, so 
 &nbsp;
 #### ATTENTION
 Do not use directories with spaces, this can interfere with the correct functioning of the tool.
-
-
+ 
 Wrong path example:
 ```shell
 /opt/new folder/MISP-Broker
@@ -99,6 +98,10 @@ Right path example:
 or
 /opt/new_folder/MISP-Broker
 ```
+&nbsp;
+
+#### ALL VALUES USED IN THIS DOCUMENTATION ARE EXAMPLE.
+
 &nbsp;
 #### 1. Install dependencies:
 ```shell
@@ -310,7 +313,7 @@ Edit the fields:
 [SYSTEM_SETTINGS]
 PROXY = 10.10.1.254:3128 # Proxy if it is necessary to use telegram and install virtual environment packages
 TELEGRAM_BOT_TOKEN = 000000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # Telegram bot token to send alerts
-TELEGRAM_CHAT_ID = -1001234567890 # Telegram chat id that will receive the alerts
+TELEGRAM_CHAT_ID = -1009999999999 # Telegram chat id that will receive the alerts
 ```
 &nbsp;
 #### 9. Install the virtual environment:
@@ -327,7 +330,7 @@ TELEGRAM_CHAT_ID = -1001234567890 # Telegram chat id that will receive the alert
 **<span style="color: red;">If the SIEM is QRADAR or is using CSV, skip to the next step (11), if the SIEM is Splunk continue with the following procedures.</span>**
 \
 \
- MISP Broker will start, create the KVs in Splunk and an App in the format **a1_splunk_misp_v1.1.4.tar.gz** in the directory and then finish generating a log with the App installation procedure in Splunk.
+ MISP Broker will start, create the KVs in Splunk and an App in the format **a1_splunk_misp_1.1.4.tar.gz** in the directory and then finish generating a log with the App installation procedure in Splunk.
 \
 \
 Run the command below to analyze the logs, for example lhebes:
