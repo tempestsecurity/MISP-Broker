@@ -1,6 +1,10 @@
 # MISP Broker
 &nbsp;
 
+Use **README.pt-BR.md** for Portuguese Brazilian Documentation.
+
+&nbsp;
+
 **MISP Broker** is a tool developed by the platform team of the Security Operations Center (SOC) of [**Tempest Security Intelligence**](https://www.tempest.com.br/). Its purpose is to perform a manageable and reliable integration of the MISP Indicators of Compromise (IoC) in Splunk, QRadar and other platforms that can use CSV type table files like *block list*.
 \
 \
