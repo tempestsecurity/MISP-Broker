@@ -14,7 +14,7 @@ fi
 
 BROKER_PATH="$(pwd)/MISP-Broker"
 
-VERSION=$(ls -l MISP-Broker_v*.tar.gz 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)
+VERSION=$(ls -l MISP-Broker*.* | grep -E '(.tar.gz|.zip)' 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)
 
 if test -z "$VERSION"
 then
@@ -38,7 +38,7 @@ echo -e "$LOGO"
 
 if test -z "$VERSION"
 then
-  echo -e "\nUpdate file not found!\nExample: MISP-Broker_v5.1.tar.gz\n"
+  echo -e "\nUpdate file not found!\nExample: MISP-Broker-5.1.tar.gz\n"
   exit 1
 fi
 
@@ -47,13 +47,13 @@ group_name=$(ls -lh | awk '{print $4}' | tail -n 1)
 
 if test -z "$LOCAL_PATH"
 then
-  echo -e "\nThe  MISP-Broker_v${VERSION}.tar.gz  and the  $(echo $0 | sed 's/\.\///g')  need to be in the same directory that  MISP-Broker, not inside or above.\n\nExample:\n
+  echo -e "\nThe  MISP-Broker-${VERSION}.tar.gz  and the  $(echo $0 | sed 's/\.\///g')  need to be in the same directory that  MISP-Broker, not inside or above.\n\nExample:\n
 \t$(whoami)@$(hostname):~$ ls -lh
 \t$(ls -lh ../ | grep -E "^\total")
 \tdrwxrwxr-x 11 $user_name $group_name 4,0K mai 19 10:58 BackUp_MISP-Broker
 \tdrwxrwxr-x  6 $user_name $group_name 4,0K mai 19 19:07 MISP-Broker
 \t-rwxrw-r--  1 $user_name $group_name   47 mai 19 18:52 misp-broker-updater.sh
-\t-rw-rw-r--  1 $user_name $group_name  17M mai 13 18:44 MISP-Broker_v${VERSION}.tar.gz
+\t-rw-rw-r--  1 $user_name $group_name  17M mai 13 18:44 MISP-Broker-${VERSION}.tar.gz
 \n"
   exit 1
 fi
@@ -109,9 +109,9 @@ then
     cp -rv MISP-Broker-main/*  MISP-Broker/
     rm -rv MISP-Broker-main.zip MISP-Broker-main
   else
-    echo -e "From release branch Archive:  MISP-Broker_v${VERSION}.tar.gz"
-    tar xzvf MISP-Broker_v${VERSION}.tar.gz -C MISP-Broker/ --strip-components=1
-    rm -rv MISP-Broker_v${VERSION}.tar.gz
+    echo -e "From release branch Archive:  MISP-Broker-${VERSION}.tar.gz"
+    tar xzvf MISP-Broker-${VERSION}.tar.gz -C MISP-Broker/ --strip-components=1
+    rm -rv MISP-Broker-${VERSION}.tar.gz
   fi
 
   echo -e "\n\nUpdate finished.\n\n\nDefining permissions...\n"
