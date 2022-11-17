@@ -120,8 +120,8 @@ crontab -e
 - Salvar e fechar.
 \
 &nbsp;
-#### 3. Descompactar e renomear a pasta de MISP-Broker-vX para MISP-Broker: 
-Comando para MISP-Broker-vX: 
+#### 3. Descompactar e renomear a pasta de MISP-Broker-X.X ou MISP-Broker-main para MISP-Broker: 
+Comando para MISP-Broker-X.X tar.gz ou zip: 
 ```shell  
 BROKER_VERSION=$(ls -l MISP-Broker*.* | grep -E '(.tar.gz|.zip)' 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)  
 EXTENSION=$(ls -l MISP-Broker-$BROKER_VERSION.* | grep -Eo '(.tar.gz|.zip)')
