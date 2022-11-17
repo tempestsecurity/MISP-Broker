@@ -127,7 +127,7 @@ BROKER_VERSION=$(ls -l MISP-Broker*.* | grep -E '(.tar.gz|.zip)' 2> /dev/null | 
 EXTENSION=$(ls -l MISP-Broker-$BROKER_VERSION.* | grep -Eo '(.tar.gz|.zip)')
 
 tar -xzvf MISP-Broker-${BROKER_VERSION}${EXTENSION}
-OR
+OU
 unzip MISP-Broker-${VERSION}${EXTENSION}
 
 mv MISP-Broker-${BROKER_VERSION} MISP-Broker 
