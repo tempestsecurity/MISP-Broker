@@ -228,7 +228,7 @@ if __name__ == "__main__":
                 SIEM_SETTINGS['SPLUNK_ELEMENT_TYPE_NUMBER'] = ['NUM']
                 SIEM_SETTINGS['SPLUNK_OUTPUT_MODE'] = {'output_mode': 'json'}
                 SIEM_SETTINGS['SPLUNK_ALREADY_IN_USE'] = 'already exists'
-                SIEM_SETTINGS['SPLUNK_QUERY_SEARCH_IOC'] = '| inputlookup {} where value = {} | rename _key as view_key'
+                SIEM_SETTINGS['SPLUNK_QUERY_SEARCH_IOC'] = '| inputlookup {} where value = "{}" | rename _key as view_key'
                 SIEM_SETTINGS['SPLUNK_DEDUP_SEARCH'] = '| inputlookup {} | dedup value | outputlookup {}'
 
             elif SIEM_SETTINGS['SIEM'] == 'CSV':
