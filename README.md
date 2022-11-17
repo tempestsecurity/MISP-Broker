@@ -118,7 +118,7 @@ crontab -e
 - Save and close.
 \
 &nbsp;
-#### 3. Unzip and rename the folder from MISP-Broker-vX or MISP-Broker-main to MISP-Broker:
+#### 3. Unzip and rename the folder from MISP-Broker-X.X or MISP-Broker-main to MISP-Broker:
 Command for MISP-Broker-X.X tar.gz or zip:
 ```shell
 BROKER_VERSION=$(ls -l MISP-Broker*.* | grep -E '(.tar.gz|.zip)' 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)
