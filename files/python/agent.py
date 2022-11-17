@@ -37,6 +37,10 @@ def agent(all_settings, events_count_by_type):
     execution_id = execution_start_register(all_settings, mode)
 
     try:
+        
+        # Adjust lived days of each IOCs in local database
+        update_lived_days(all_settings, mode)
+    
         # Get from local database the amount of IOCs
         total_of_iocs_in_db = sqlite_command(all_settings, SQL_TO_LIST_ALL_IOCS)[1]
         total_of_iocs_in_db = len(total_of_iocs_in_db)
