@@ -123,10 +123,14 @@ crontab -e
 #### 3. Descompactar e renomear a pasta de MISP-Broker-vX para MISP-Broker: 
 Comando para MISP-Broker-vX: 
 ```shell  
-BROKER_VERSION=$(ls -l MISP-Broker_v*.tar.gz 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)  
+BROKER_VERSION=$(ls -l MISP-Broker*.* | grep -E '(.tar.gz|.zip)' 2> /dev/null | awk '{print $NF}' | grep -Eo "[0-9\.]+" | sed 's/.$//g' | grep -Eo "[0-9\.]+" | sort -u | tail -n 1)  
+EXTENSION=$(ls -l MISP-Broker-$BROKER_VERSION.* | grep -Eo '(.tar.gz|.zip)')
 
-tar -xzvf MISP-Broker_v${BROKER_VERSION}.tar.gz 
-mv MISP-Broker_v${BROKER_VERSION} MISP-Broker  
+tar -xzvf MISP-Broker-${BROKER_VERSION}${EXTENSION}
+OR
+unzip MISP-Broker-${VERSION}${EXTENSION}
+
+mv MISP-Broker-${BROKER_VERSION} MISP-Broker 
 cd MISP-Broker  
 ```  
 Comando para MISP-Broker-main:
@@ -497,7 +501,7 @@ total 34M
 drwxrwxr-x 11 user user 4,0K mai 19 00:01 BackUp_MISP-Broker
 drwxrwxr-x  6 user user 4,0K mai 19 19:07 MISP-Broker
 -rwxrw-r--  1 user user   47 mai 19 18:52 misp-broker-updater.sh
--rw-rw-r--  1 user user  17M mai 13 18:44 MISP-Broker_v7.6.tar.gz
+-rw-rw-r--  1 user user  17M mai 13 18:44 MISP-Broker-7.6.tar.gz
 ```
 
 \
