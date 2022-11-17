@@ -125,8 +125,15 @@ def qradar_purge_reference_set(all_settings, reference_set_name):
 
 def qradar_delete_item(all_settings, reference_set_name, item):
     # Delete single data
-    item = urllib.parse.quote(item)
-    item = urllib.parse.quote(item)
+    
+    item = {'item': item}
+    item = urllib.parse.urlencode(item)
+    item = re.sub('^item=', '', item)
+    
+    item = {'item': item}
+    item = urllib.parse.urlencode(item)
+    item = re.sub('^item=', '', item)
+    
     url = '{}{}/{}'.format(all_settings['SIEM_SETTINGS']['QRADAR_SIEM_STORAGE_URL'], reference_set_name, item)
 
     try:
